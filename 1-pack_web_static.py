@@ -1,0 +1,12 @@
+#!/usr/bin/python3
+'''
+    Task 1
+'''
+from fabric.api import local
+import time
+
+
+def do_pack():
+    """Make a tar.gz archive of web_static """
+    o = local("tar -zcf web_static_{}.tgz web_static/"
+              .format(time.strftime("%Y%m%d%H%M%S")))
