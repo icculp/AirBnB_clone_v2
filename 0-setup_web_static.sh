@@ -20,7 +20,7 @@ indx="<html>
 sudo touch /data/web_static/releases/test/index.html
 sudo echo "$indx" | sudo tee /data/web_static/releases/test/index.html
 
-if [ ! -L /data/web_static/current ]; then
+if [[ -L /data/web_static/current ]]; then
         sudo rm /data/web_static/current
         echo "in if"
 fi
@@ -30,9 +30,8 @@ sudo chown -R ubuntu:ubuntu /data
 
 srvr="^server {$"
 repl="server {\
-\n\tlocation /hbnv_static {\
+\n\tlocation /hbnb_static {\
 \n\t\talias /data/web_static/current/;\
-\n\t\tinternal;\
 \n\t}\n"
 file="/etc/nginx/sites-available/default"
 
