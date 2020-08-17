@@ -8,5 +8,5 @@ import time
 
 def do_pack():
     """Make a tar.gz archive of web_static """
-    o = local("tar -cvzf web_static_{}.tgz web_static/"
+    o = local("mkdir versions; tar -cvzf versions/web_static_{}.tgz web_static/"
               .format(time.strftime("%Y%m%d%H%M%S")))
