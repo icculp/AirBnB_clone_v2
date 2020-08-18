@@ -13,7 +13,7 @@ env.hosts = ['34.73.244.83', '35.175.186.218']
 def do_deploy(archive_path):
     """ deploy archive given as input to /tmp on both web servers """
     if os.path.exists("./" + archive_path):
-        put(archive_path, '/tmp')
+        put(archive_path, '/tmp/')
         print('true')
     else:
         print('returning false')
