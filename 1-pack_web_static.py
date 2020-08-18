@@ -11,3 +11,4 @@ def do_pack():
     o = local("mkdir versions; tar -cvzf versi" +
               "ons/web_static_{}.tgz web_static/"
               .format(time.strftime("%Y%m%d%H%M%S")))
+    return o
