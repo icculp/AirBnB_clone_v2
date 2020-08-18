@@ -41,10 +41,9 @@ exec {'apt-update':
 -> file {['/data', '/data/web_static', '/data/web_static/shared',
           '/data/web_static/releases', '/data/web_static/releases/test']:
   ensure  => 'directory',
+  owner   => 'ubuntu',
+  group   => 'ubuntu',
 }
-#  owner   => 'ubuntu',
-#  group    => 'ubuntu',
-
 
 -> package {'nginx':
   ensure   => 'installed',
@@ -55,6 +54,8 @@ exec {'apt-update':
   ensure  => 'file',
   path    => '/data/web_static/releases/test/index.html',
   content => "${indx} ",
+  owner   => 'ubuntu',
+  group   => 'ubuntu',
 }
 
 -> file {['/var', '/var/www', '/var/www/html']:
