@@ -7,7 +7,8 @@ $indx = "<html>
   <body>
     Holberton School
   </body>
-</html>"
+</html>
+"
 
 $s = "server {
         listen 80 default_server;
