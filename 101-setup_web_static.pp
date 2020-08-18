@@ -13,9 +13,9 @@ $s = "server {
         listen 80 default_server;
         listen [::]:80 default_server;
 
-	location /hbnb {
-		alias /data/web_static/current;
-	}
+        location /hbnb_static {
+                alias /data/web_static/current/;
+        }
 
         rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
         add_header X-Served-By ${hostname};
@@ -35,23 +35,30 @@ $s = "server {
 }"
 
 exec {'apt-update':
-    command => '/usr/bin/env apt-get -y update',
+  command => '/usr/bin/env apt-get -y update',
 }
 
--> exec {'mkdir':
-  command => 'sudo mkdir -p /data/web_static/shared; sudo mkdir -p /data/web_static/releases/test',
+-> file {['/data', '/data/web_static', '/data/web_static/shared',
+          '/data/web_static/releases', '/data/web_static/releases/test']:
+  ensure  => 'directory',
 }
-
-
--> file {'/data/web_static/releases/test/index.html'
-  ensure  => 'file',
-  path    => '/data/web_static/releases/test/index.html',
-  content => "${indx}",
+#  owner   => 'ubuntu',
+#  group    => 'ubuntu',
 
 
 -> package {'nginx':
   ensure   => 'installed',
   provider => 'apt',
+}
+
+-> file {'/data/web_static/releases/test/index.html':
+  ensure  => 'file',
+  path    => '/data/web_static/releases/test/index.html',
+  content => "${indx} ",
+}
+
+-> file {['/var', '/var/www', '/var/www/html']:
+  ensure => 'directory',
 }
 
 -> file {'/var/www/html/index.html':
@@ -73,16 +80,13 @@ exec {'apt-update':
   content => "${s} ",
 }
 
--> exec {'chown':
-  command => 'sudo chown -R ubuntu:ubuntu /data',
-}
+#-> file {'/data/web_static/current':
+#  ensure => 'absent',
+#}
 
--> exec {'rm':
-  command => 'sudo rm -f /data/web_static/current',
-}
-
--> exec {'ln':
-  command => 'sudo ln -s /data/web_static/releases/test data/web_static/current',
+-> file {'/data/web_static/current':
+  ensure => 'link',
+  target => '/data/web_static/releases/test',
 }
 
 -> service {'nginx':
