@@ -1,6 +1,14 @@
 # Task 2
 # comment
 
+$indx = "<html>
+  <head>
+  </head>
+  <body>
+    Holberton School
+  </body>
+</html>"
+
 $s = "server {
         listen 80 default_server;
         listen [::]:80 default_server;
@@ -34,6 +42,13 @@ exec {'apt-update':
   command => 'sudo mkdir -p /data/web_static/shared; sudo mkdir -p /data/web_static/releases/test',
 }
 
+
+-> file {'/data/web_static/releases/test/index.html'
+  ensure  => 'file',
+  path    => '/data/web_static/releases/test/index.html',
+  content => "${indx}",
+
+
 -> package {'nginx':
   ensure   => 'installed',
   provider => 'apt',
@@ -60,6 +75,14 @@ exec {'apt-update':
 
 -> exec {'chown':
   command => 'sudo chown -R ubuntu:ubuntu /data',
+}
+
+-> exec {'rm':
+  command => 'sudo rm -f /data/web_static/current',
+}
+
+-> exec {'ln':
+  command => 'sudo ln -s /data/web_static/releases/test data/web_static/current',
 }
 
 -> service {'nginx':
