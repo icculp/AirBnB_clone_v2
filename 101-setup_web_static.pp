@@ -91,6 +91,10 @@ exec {'apt-update':
   target => '/data/web_static/releases/test',
 }
 
+-> exec {'chown':
+  command => '/usr/bin/env chown -R ubuntu:ubuntu /data',
+}
+
 -> service {'nginx':
   ensure  => 'running',
   restart => 'sudo service nginx restart',
