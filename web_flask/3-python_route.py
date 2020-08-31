@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 '''
-    Task 22
+    Task 3
 '''
 from flask import Flask
 from web_flask import app
@@ -23,6 +23,14 @@ def hello_c(text):
     ''' Hello HBNB! '''
     return "C {}".format(text.replace("_", " "))
 
+@app.route('/python', strict_slashes=False)
+@app.route('/python/<text>', strict_slashes=False)
+def hello_python(text=None):
+    ''' Hello HBNB! '''
+    if text is not None:
+        return "Python {}".format(text.replace("_", " "))
+    else:
+        return "Python is cool"
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
