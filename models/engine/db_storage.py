@@ -86,3 +86,7 @@ class DBStorage:
             return
         else:
             self.__session.delete(obj)
+
+    def close(self):
+        """ closes connection """
+        self.__session.close()

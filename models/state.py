@@ -15,9 +15,9 @@ class State(BaseModel, Base):
     @property
     def cities(self):
         ''' getter for FileStorage cities-state '''
-        from models.engine import FileStorage
+        from models import storage
         l = []
-        for k, v in FileStorage.__objects.items():
+        for v in storage.all(City).values():
             if v.state_id == self.id:
                 l.append(v)
         return l
