@@ -3,7 +3,6 @@
     Task 0
 '''
 from flask import Flask
-from web_flask import app
 
 
 app = Flask(__name__)
