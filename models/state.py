@@ -12,12 +12,13 @@ class State(BaseModel, Base):
     name = Column(String(128), nullable=False)
     cities = relationship('City', cascade="all, delete", backref='state')
 
-    @property
-    def cities(self):
-        ''' getter for FileStorage cities-state '''
-        from models import storage
-        l = []
-        for v in storage.all(City).values():
-            if v.state_id == self.id:
-                l.append(v)
-        return l
+    if environ.get("HBNB_TYPE_STORAGE") != 'db':
+        @property
+        def cities(self):
+            ''' getter for FileStorage cities-state '''
+            from models import storage
+            l = []
+            for v in storage.all(City).values():
+                if v.state_id == self.id:
+                    l.append(v)
+            return l
