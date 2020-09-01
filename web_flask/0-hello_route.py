@@ -6,6 +6,9 @@ from flask import Flask
 from web_flask import app
 
 
+app = Flask(__name__)
+
+
 @app.route('/', strict_slashes=False)
 def hello_hbnb():
     ''' Hello HBNB! '''
