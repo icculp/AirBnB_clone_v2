@@ -23,6 +23,7 @@ def hello_c(text):
     ''' Hello HBNB! '''
     return "C {}".format(text.replace("_", " "))
 
+
 @app.route('/python', strict_slashes=False)
 @app.route('/python/<text>', strict_slashes=False)
 def hello_python(text=None):

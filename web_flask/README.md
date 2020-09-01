@@ -6,5 +6,5 @@
 * How to handle variables in a route
 * What is a template
 * How to create a HTML response in Flask by using a template
-* How to create a dynamic template (loops, conditions)
+* How to create a dynamic template
 * How to display in HTML data from a MySQL database
