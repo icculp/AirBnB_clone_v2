@@ -39,7 +39,7 @@ def hello_python(text=None):
 @app.route('/number/<n>', strict_slashes=False)
 def hello_number(n):
     ''' Hello HBNB! '''
-    if type(eval(n)) is int:
+    if n.isdigit():
         return "{} is a number".format(n)
 
 
