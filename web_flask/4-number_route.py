@@ -39,8 +39,7 @@ def hello_python(text=None):
 @app.route('/number/<int:n>', strict_slashes=False)
 def hello_number(n):
     ''' Hello HBNB! '''
-    if n.isdigit():
-        return "{} is a number".format(n)
+    return "{} is a number".format(n)
 
 
 if __name__ == '__main__':
