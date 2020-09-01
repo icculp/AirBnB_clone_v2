@@ -37,10 +37,10 @@ def hello_python(text=None):
         return "Python is cool"
 
 
-@app.route('/number/<int:n', strict_slashes=False)
+@app.route('/number/<int:n>', strict_slashes=False)
 def hello_number(n):
     ''' Hello HBNB! '''
-        return "{} is a number".format(n)
+    return "{} is a number".format(n)
 
 
 @app.route('/number_template/<int:n>', strict_slashes=False)
