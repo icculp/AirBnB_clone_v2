@@ -3,7 +3,9 @@
     Task 3
 '''
 from flask import Flask
-from web_flask import app
+
+
+app = Flas(__name__)
 
 
 @app.route('/', strict_slashes=False)

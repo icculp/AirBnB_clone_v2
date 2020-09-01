@@ -3,8 +3,10 @@
     Task 5
 '''
 from flask import Flask
-from web_flask import app
 from flask import render_template
+
+
+app = Flask(__name__)
 
 
 @app.route('/', strict_slashes=False)
