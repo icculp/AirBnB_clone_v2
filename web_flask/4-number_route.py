@@ -36,7 +36,7 @@ def hello_python(text=None):
         return "Python is cool"
 
 
-@app.route('/number/<n>', strict_slashes=False)
+@app.route('/number/<int:n>', strict_slashes=False)
 def hello_number(n):
     ''' Hello HBNB! '''
     if n.isdigit():
