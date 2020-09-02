@@ -4,6 +4,14 @@
         <TITLE>HBNB</TITLE>
     </HEAD>
     <BODY>
-        <H1>Number: {{ n }} is {% if n % 2 == 0 %}even{% else %}odd{% endif %}</H1>
+        <H1>States</H1>
+        <UL>
+	    {% for state in sto|sort(attribute='name') %}
+ 	    <LI>{{ state.id }}: <B>{{ state.name }}</B></LI>
+		{% for city in state.cities|sort(attribute='name') %}
+			<LI>{{ city.id }}: <B>{{ city.name }}</B>
+		{% endfor %}
+	    {% endfor %}
+        </UL>
     </BODY>
 </HTML>
