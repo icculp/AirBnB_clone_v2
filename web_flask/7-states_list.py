@@ -65,7 +65,7 @@ def states_list():
 
 
 @app.teardown_appcontext
-def close_db(error):
+def close_db(self):
     """ Closes the connection at the end of the request."""
     storage.close()
 
