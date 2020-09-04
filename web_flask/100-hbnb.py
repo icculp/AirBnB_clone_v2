@@ -109,9 +109,17 @@ def hbnb():
     sto = storage.all(State)
     am = storage.all(Amenity)
     pl = storage.all(Place)
+    '''
     print(type(pl))
     print(dir(pl))
     print(pl)
+    print("--------------asdfasdfa------------------")
+    for p in pl.values():
+        print(p)
+        print(p.user.first_name)
+        print(p.user.last_name)
+        break
+    '''
     '''   for p in pl:
         type(p)
         print(p.__dict__)'''
@@ -125,4 +133,4 @@ def close_db(self):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000, debug=True)
